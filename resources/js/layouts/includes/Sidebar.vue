@@ -18,7 +18,7 @@
         v-for="item in items"
         :key="item.title"
         color="secondary"
-        link
+        @click.stop="$router.push(item.route)"
         >
         <v-list-item-content>
             <v-list-item-title>{{ item.title }}</v-list-item-title>
@@ -32,7 +32,8 @@
 export default {
     data : () => ({
         items : [
-            {title : 'Dashboard', route: '/dashboard'}
+            {title : 'Dashboard', icon: 'mdi-view-dashboard', route: '/dashboard'},
+            {title : 'About', icon: 'mdi-view-dashboard', route: '/about'}
         ]
     }),
 
