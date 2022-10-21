@@ -1,6 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -13,11 +15,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/{any}', function () {
-    return view('welcome');
-})->where('any', '.*');
+// Route::get('/{any}', function () {
+//     return view('welcome');
+// })->where('any', '.*');
 
+// Route::get('/{any}', function () {
+//     return view('welcome');
+// })->where('any', '.*');
+
+Route::view('/{any}', 'welcome')->where('any', '.*');
+
+// Route::post('login', 'UserController@login');
+
+Route::group(['prefix' => 'v1'], function () {
+    Route::post('login', [UserController::class, 'login'])->name('login');
+});
 Route::middleware('auth:web')->group(function () {
 
     Route::get('self', 'UserController@self');
+    Route::get('user', 'UserController@index');
 });

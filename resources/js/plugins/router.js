@@ -15,24 +15,28 @@ const router = new VueRouter({
     // linkExactActiveClass: 'active-route',
     routes : [
         {
-            path: '',
+            path: '/',
             name: 'main',
             component : Main,
+            meta: { authOnly: true },
             children: [{
                 path: '/dashboard',
                 name: 'dashboard',
-                component: Dashboard
+                component: Dashboard,
+                meta: { authOnly: true },
             },
             {
                 path: '/about',
                 name: 'about',
-                component: About
+                component: About,
+                meta: { authOnly: true },
             }]
         },
         {
             path: '/login',
             name: 'login',
-            component: Login
+            component: Login,
+            meta: { authOnly: false },
         }
     ]
 });

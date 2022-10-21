@@ -30,6 +30,7 @@
 
                     <v-col>
                         <v-text-field
+                            v-model="email"
                             filled
                             rounded
                             dense
@@ -37,6 +38,7 @@
                         ></v-text-field>
                 
                         <v-text-field
+                            v-model="password"
                             filled
                             rounded
                             dense
@@ -54,6 +56,7 @@
                                 rounded
                                 color="success"
                                 class= "mb-2 px-7"
+                                @click="Login()"
                             >
                                 Login
                             </v-btn>
@@ -108,6 +111,7 @@
 import logo from '../assets/logo.png'
 import logocard from '../assets/logocard.png'
 import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
+import { login } from "../repositories/user.api";
 export default {
    data() {
     return {
@@ -117,9 +121,31 @@ export default {
             mdiEyeOffOutline,
         },
         logo, 
-        logocard
+        logocard,
+        email: '',
+        password: '',
     }
    },
+   methods : {
+        Login() {
+          const login_data = {
+              email: this.email,
+              password: this.password
+          }
+          login(login_data).then(({data}) => {
+            //   this.$store.commit('login', data)
+              localStorage.setItem('token', data.access_token)
+              this.routeEnter();
+          }).catch((errors)=> {
+              console.log(errors)
+            //   this.snackbar = true
+              
+          })
+        },
+        routeEnter(){
+            this.$router.push('/dashboard');
+        }
+   }
 }
 </script>
 <style>
@@ -147,6 +173,7 @@ body {
     height: 100%;
     border-style: solid;
     border-width: 5px;
+    box-shadow: 2px 2px 4px #000000;
 }
 
 </style>

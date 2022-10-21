@@ -88,7 +88,7 @@ export default new Vuex.Store({
     },
     login(state, data) {
       state.user = data.user
-      console.log(state.user.id,"active User")
+      // console.log(state.user.id,"active User")
     },
 
     sidebar(state){
