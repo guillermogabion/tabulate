@@ -32,3 +32,8 @@
             I am Main
         </div>
     </template> -->
+<style scoped>
+.wrap {
+    background-color: green;
+}
+</style>

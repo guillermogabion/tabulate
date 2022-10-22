@@ -14,19 +14,34 @@
     </v-list-item>
     <v-list
     dense
+    padding="20px"
     >
         <v-list-item
         v-for="item in items"
         :key="item.title"
-        color="secondary"
+       
         :to="item.route"
-        class="text-decoration-none"
+        class="text-decoration-none spacing"
         >
+        <v-icon
+        medium
+        color="darken-2"
+        class="pr-10"
+        >
+        {{ item.icon }}
+        </v-icon>
         <v-list-item-content>
             <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item-content>
         </v-list-item>
     </v-list>
+    <!-- <template v-for="item in items">
+       <v-list-item
+       :key ="item.title"
+       >
+
+       </v-list-item>
+    </template> -->
 
    </v-navigation-drawer>
 </template>
@@ -37,6 +52,7 @@ export default {
         logo,
         items : [
             {title : 'Dashboard', icon: 'mdi-view-dashboard', route: '/dashboard'},
+            {title : 'Employees', icon: 'mdi mdi-account-group', route: '/employee'},
             {title : 'About', icon: 'mdi-view-dashboard', route: '/about'}
         ]
     }),
@@ -69,3 +85,18 @@ export default {
     }
 }
 </script>
+<style>
+.spacing {
+    padding-top: 0.5em;
+}
+.v-list-item--active {
+    background-color: rgb(66, 122, 10);
+    color: #f4f4f4 !important;
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+    border-top-right-radius: 10% 50%;
+    border-bottom-right-radius: 10% 50%;
+    margin: 4%;
+    padding-bottom: 2%;
+}
+</style>

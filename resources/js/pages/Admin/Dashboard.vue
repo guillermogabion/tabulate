@@ -1,30 +1,29 @@
 <template>
-    <div>
-       
-            I am Dashboard
-            <br/>
-            I am Dashboard
-            <br/>
-            I am Dashboard
-            <br/>
-            I am Dashboard
-            <br/>
-            I am Dashboard
-            <br/>
-            I am Dashboard
-            <br/>
-            I am Dashboard
-            <br/>
-            I am Dashboard
-            <br/>
-            I am Dashboard
-            <br/>
-            I am Dashboard
-            <br/>
-
-           
-       
-    </div>
+<v-slide-x-transition>
+    
+    <v-card>
+        I am Dashboard
+        <br/>
+        I am Dashboard
+        <br/>
+        I am Dashboard
+        <br/>
+        I am Dashboard
+        <br/>
+        I am Dashboard
+        <br/>
+        I am Dashboard
+        <br/>
+        I am Dashboard
+        <br/>
+        I am Dashboard
+        <br/>
+        I am Dashboard
+        <br/>
+        I am Dashboard
+        <br/>
+    </v-card>
+</v-slide-x-transition>
 </template>
 
 <script>
@@ -34,10 +33,6 @@ export default {
             
         }
     },
-    methods : {
-        click(){
-            this.$router.push({ name: "about"});
-        }
-    }
+   
 }
 </script>

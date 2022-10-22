@@ -1,44 +1,21 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import Main from '../pages/Main.vue'
-import Login from '../pages/Login.vue'
-import Dashboard from '../pages/Admin/Dashboard.vue'
-import About from '../pages/Admin/About.vue'
 import { Self } from "../repositories/user.api";
 import store from '../store'
+import pages from './pages'
 
 
 Vue.use(VueRouter)
 
+const routes = [
+    ...pages
+]
+
 const router = new VueRouter({
     mode : 'history',
-    // linkExactActiveClass: 'active-route',
-    routes : [
-        {
-            path: '/',
-            name: 'main',
-            component : Main,
-            meta: { authOnly: true },
-            children: [{
-                path: '/dashboard',
-                name: 'dashboard',
-                component: Dashboard,
-                meta: { authOnly: true },
-            },
-            {
-                path: '/about',
-                name: 'about',
-                component: About,
-                meta: { authOnly: true },
-            }]
-        },
-        {
-            path: '/login',
-            name: 'login',
-            component: Login,
-            meta: { authOnly: false },
-        }
-    ]
+    routes,
+    linkActiveClass: "active",
+    linkExactActiveClass: "exact-active",
 });
 
 function guardRoutes(to, next) {
