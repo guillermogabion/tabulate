@@ -27,7 +27,7 @@ function guardRoutes(to, next) {
     } else if (localStorage.getItem('token') === '') {
         next({ name: 'login' })
     } else if (guest_routes.includes(to.name)) {
-        next({ name: 'main' })
+        next({ name: 'dashboard' })
     } else {
         next()
     }

@@ -1,15 +1,34 @@
 <template>
-    <v-main
-    class="bg-gray-200 h-full overflow-auto no-scrollbar"
-    style="height: 100vh; max-height: 100vh;"
-    >
-        <v-container
-       
+    <div>
+        <app-nav-bar :mini="mini" @changeStatusDrawer="mini = !mini"></app-nav-bar>
+        <app-bar @changeStatusDrawer="mini = !mini"></app-bar>
+        <v-main
+        class="bg-gray-200 h-full overflow-auto no-scrollbar"
+        style="height: 100vh; max-height: 100vh;"
         >
-            <v-scroll-x-transition mode="in" hide-on-leave="true">
+        
+        <v-container>
+            <transition name="slide-x-transition" mode="out-in">
                 <router-view></router-view>
-            </v-scroll-x-transition>
+            </transition>
         </v-container>
-    </v-main>    
+        </v-main>    
+    </div>
 
 </template>
+<script>
+import AppBar from "../includes/Header.vue"
+import AppNavBar from "../includes/Sidebar.vue"
+export default {
+        data() {
+            return {
+                mini: true
+            }
+           
+        },
+        components:{
+             AppBar,
+             AppNavBar   
+        },
+    }
+</script>

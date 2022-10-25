@@ -19,9 +19,8 @@
         <v-list-item
         v-for="item in items"
         :key="item.title"
-       
         :to="item.route"
-        class="text-decoration-none spacing"
+        class="text-decoration-none spacing hover"
         >
         <v-icon
         medium
@@ -51,7 +50,7 @@ export default {
     data : () => ({
         logo,
         items : [
-            {title : 'Dashboard', icon: 'mdi-view-dashboard', route: '/dashboard'},
+            {title : 'Dashboard', icon: 'mdi-view-dashboard', route: '/'},
             {title : 'Employees', icon: 'mdi mdi-account-group', route: '/employee'},
             {title : 'About', icon: 'mdi-view-dashboard', route: '/about'}
         ]
@@ -86,11 +85,31 @@ export default {
 }
 </script>
 <style>
+@keyframes bounce {
+	0%, 100%, 20%, 50%, 80% {
+		-webkit-transform: translateY(0);
+		-ms-transform:     translateY(0);
+		transform:         translateY(0)
+	}
+	40% {
+		-webkit-transform: translateY(-30px);
+		-ms-transform:     translateY(-30px);
+		transform:         translateY(-30px)
+	}
+	60% {
+		-webkit-transform: translateY(-15px);
+		-ms-transform:     translateY(-15px);
+		transform:         translateY(-15px)
+	}
+}
 .spacing {
     padding-top: 0.5em;
 }
+.v-list-item {
+    transition: transform .2s;
+}
 .v-list-item--active {
-    background-color: rgb(66, 122, 10);
+    background-color: #4caf50;
     color: #f4f4f4 !important;
     border-top-left-radius: 10% 50%;
     border-bottom-left-radius: 10% 50%;
@@ -98,5 +117,22 @@ export default {
     border-bottom-right-radius: 10% 50%;
     margin: 4%;
     padding-bottom: 2%;
+    
 }
+
+.hover:hover {
+    background-color: #4caf50!important;
+    color: #040404 !important;
+    border-top-left-radius: 10% 50%;
+    border-bottom-left-radius: 10% 50%;
+    border-top-right-radius: 10% 50%;
+    border-bottom-right-radius: 10% 50%;
+    margin: 4%;
+    padding-bottom: 2%;
+    cursor: pointer;
+    -ms-transform: scale(1.5); /* IE 9 */
+    -webkit-transform: scale(1.5); /* Safari 3-8 */
+    transform: scale(1.05); 
+}
+
 </style>

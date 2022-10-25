@@ -13,6 +13,12 @@ export default [ {
     component : Main,
     meta: { authOnly: true },
     children: [{
+        path: '/',
+        name: 'dashboard',
+        component: Dashboard,
+        meta: { authOnly: true },
+    },
+    {
         path: '/dashboard',
         name: 'dashboard',
         component: Dashboard,

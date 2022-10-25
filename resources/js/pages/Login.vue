@@ -2,7 +2,7 @@
 <v-app>
     <div>
     <v-sheet
-    style="background-color: green;  max-height: 101.2vh;"
+    style="background-color: #4caf50!important;  max-height: 101.2vh;"
     fluid
     >
         <v-row>
@@ -156,10 +156,7 @@ background-color: green;
 body {
   overflow: hidden; /* Hide scrollbars */
 }
-.background {
-   
-   
-}
+
 .login {
     padding-top: 30%;
 }
