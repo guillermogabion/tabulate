@@ -4,6 +4,7 @@
    v-model = "mini"
    persistent
    >
+   
     <v-list-item class="px-2 pt-2">
         <v-img
         color="primary"
@@ -12,6 +13,7 @@
         >
         </v-img>
     </v-list-item>
+   
     <v-list
     dense
     padding="20px"
@@ -34,13 +36,6 @@
         </v-list-item-content>
         </v-list-item>
     </v-list>
-    <!-- <template v-for="item in items">
-       <v-list-item
-       :key ="item.title"
-       >
-
-       </v-list-item>
-    </template> -->
 
    </v-navigation-drawer>
 </template>
@@ -52,7 +47,17 @@ export default {
         items : [
             {title : 'Dashboard', icon: 'mdi-view-dashboard', route: '/'},
             {title : 'Employees', icon: 'mdi mdi-account-group', route: '/employee'},
-            {title : 'About', icon: 'mdi-view-dashboard', route: '/about'}
+            {title : 'About', icon: 'mdi-view-dashboard', route: '/about'},
+            {title : 'Settings', icon: 'mdi-view-dashboard', route: '/setting'},
+        //     {
+        //         icon: 'mdi mdi-notebook-multiple',
+        //         'icon-alt': 'mdi mdi-notebook-multiple',
+        //         title: 'Librarian',
+        //         model: false,
+        //         children: [
+        //             { icon: 'mdi mdi-book-open-variant', title: 'Book Record', route: '/library' },
+        //         ],
+        // },
         ]
     }),
 
@@ -84,7 +89,7 @@ export default {
     }
 }
 </script>
-<style>
+<style scoped>
 @keyframes bounce {
 	0%, 100%, 20%, 50%, 80% {
 		-webkit-transform: translateY(0);
@@ -108,6 +113,7 @@ export default {
 .v-list-item {
     transition: transform .2s;
 }
+
 .v-list-item--active {
     background-color: #4caf50;
     color: #f4f4f4 !important;
@@ -119,6 +125,7 @@ export default {
     padding-bottom: 2%;
     
 }
+
 
 .hover:hover {
     background-color: #4caf50!important;
@@ -133,6 +140,16 @@ export default {
     -ms-transform: scale(1.5); /* IE 9 */
     -webkit-transform: scale(1.5); /* Safari 3-8 */
     transform: scale(1.05); 
+}
+.content {
+    padding-left: 2em;
+  }
+  .left {
+    padding-left: 0.3em;
+  }
+
+.v-list-group.tile > div:first-child:hover {
+  background:#EF7922 !important;
 }
 
 </style>

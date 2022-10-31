@@ -10,25 +10,34 @@
         <v-container>
             <transition name="slide-x-transition" mode="out-in">
                 <router-view></router-view>
+               
             </transition>
         </v-container>
-        </v-main>    
+        <v-btn fab dark large color="#4caf50" fixed right bottom @click="$router.push('/')">
+        <v-icon dark>mdi mdi-chat</v-icon>
+        </v-btn>
+        </v-main> 
+       
+
     </div>
 
 </template>
 <script>
+import Chat from './chat/index.vue'
 import AppBar from "../includes/Header.vue"
 import AppNavBar from "../includes/Sidebar.vue"
 export default {
         data() {
             return {
-                mini: true
+                mini: true,
+                dialog: false
             }
            
         },
         components:{
              AppBar,
-             AppNavBar   
+             AppNavBar,
+             Chat
         },
     }
 </script>
