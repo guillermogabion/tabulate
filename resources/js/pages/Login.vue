@@ -2,16 +2,14 @@
 <v-app>
     <div>
     <v-sheet
-    style="background-color: #4caf50!important;  max-height: 101.2vh;"
+    style="max-height: 101.2vh;"
     fluid
     >
-        <v-row>
-            <v-col>
-                <div class="text-center login">
+    <div class="text-center login">
                     <v-card
                     width="500"
                     class="mx-auto"
-                    elaevation="3"
+                    elevation="3"
                     color="white"
                     >
                     <v-card>
@@ -21,11 +19,10 @@
                         <v-img 
                         contain
                         :src="logocard"
-                        max-height="10%"
-                        width="20%"
+                        max-height="30%"
+                        width="50%"
                         class="mx-auto"
                         />
-                        <h4 class="text-fonts">Welcome, well come</h4>
                     </div>
 
                     <v-col>
@@ -73,20 +70,6 @@
                     </v-card>
                     </v-card>
                 </div>
-            </v-col>
-            <v-col>
-            <div class="border">
-            <v-img 
-                contain
-                :src="logo"
-                max-height="10%"
-                width="500px"
-                class="mx-auto"
-                style="padding-top: 80%;"
-            />
-            </div>
-            </v-col>
-            </v-row>
      
     </v-sheet>
 </div>
@@ -108,7 +91,7 @@
 </template>
 
 <script>
-import logo from '../assets/logo.png'
+import logo from '../assets/logo.jpg'
 import logocard from '../assets/logocard.png'
 import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
 import { login } from "../repositories/user.api";
@@ -158,7 +141,7 @@ body {
 }
 
 .login {
-    padding-top: 30%;
+    padding-top: 10%;
 }
 
 
@@ -171,6 +154,8 @@ body {
     border-style: solid;
     border-width: 5px;
     box-shadow: 2px 2px 4px #000000;
+    padding-left: 2em;
+    padding-right: 2em;
 }
 
 </style>

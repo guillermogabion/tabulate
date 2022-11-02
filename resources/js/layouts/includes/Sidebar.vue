@@ -9,7 +9,7 @@
         <v-img
         color="primary"
         size="40"
-        :src="logo"
+        :src="logocard"
         >
         </v-img>
     </v-list-item>
@@ -40,14 +40,14 @@
    </v-navigation-drawer>
 </template>
 <script>
-import logo from '../../assets/sidelogo.png'
+import logocard from '../../assets/logocard.png'
 export default {
     data : () => ({
-        logo,
+        logocard,
         items : [
             {title : 'Dashboard', icon: 'mdi-view-dashboard', route: '/'},
-            {title : 'Employees', icon: 'mdi mdi-account-group', route: '/employee'},
-            {title : 'About', icon: 'mdi-view-dashboard', route: '/about'},
+            {title : 'Participants', icon: 'mdi mdi-account-group', route: '/attendee'},
+            {title : 'Events', icon: 'mdi mdi-account-group', route: '/event'},
             {title : 'Settings', icon: 'mdi-view-dashboard', route: '/setting'},
         //     {
         //         icon: 'mdi mdi-notebook-multiple',

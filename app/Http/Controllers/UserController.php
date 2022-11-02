@@ -19,7 +19,7 @@ class UserController extends Controller
 
     public function index()
     {
-        return User::get();
+        return view('users');
     }
     public function login(Request $request)
     {

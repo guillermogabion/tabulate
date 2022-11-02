@@ -6,7 +6,7 @@ import router from '../plugins/router'
 
 // const baseDomain = "https://canteen-back.checkmy.dev";
 // const baseURL = `${baseDomain}/api`; // Incase of /api/v1;
-const baseURL = `/v1`;
+const baseURL = `/admin/v1`;
 const httpClient = axios.create({
     baseURL,
 });

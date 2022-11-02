@@ -5,9 +5,11 @@ import Dashboard from '../pages/Admin/Dashboard.vue'
 import Employee from '../pages/Admin/Employee/index.vue'
 import AddEmployee from '../pages/Admin/Employee/includes/add.vue'
 import About from '../pages/Admin/About.vue'
-import Library from '../pages/Admin/Employee/Library/index.vue'
 import Chat from '../layouts/includes/chat/index.vue'
 import Settings from '../pages/settings'
+
+// event 
+import Event from '../pages/Admin/Event/index.vue'
 
 // settings 
 import NavSetting from '../pages/settings/navsetting.vue'
@@ -33,15 +35,24 @@ export default [{
         },
         // employee 
         {
-            path: '/employee',
-            name: 'employee',
+            path: '/attendee',
+            name: 'attendee',
             component: Employee,
             meta: { authOnly: true },
+            children : [
+                {
+                    path: '/attendee/add',
+                    name: 'attendee-add',
+                    component: AddEmployee,
+                    meta: { authOnly: true },
+                },
+            ]
         },
+
         {
-            path: '/employee/add',
-            name: 'employee-add',
-            component: AddEmployee,
+            path: '/event',
+            name: 'event',
+            component: Event,
             meta: { authOnly: true },
         },
 
@@ -51,12 +62,7 @@ export default [{
             component: About,
             meta: { authOnly: true },
         },
-        {
-            path: '/library',
-            name: 'library',
-            component: Library,
-            meta: { authOnly: true },
-        },
+
         {
             path: '/chat',
             name: 'chat',
