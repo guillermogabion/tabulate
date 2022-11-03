@@ -127,6 +127,9 @@ export default {
         },
         routeEnter(){
             this.$router.push('/dashboard');
+        },
+        routeAttend(){
+            this.$router.push('/attendance');
         }
    }
 }

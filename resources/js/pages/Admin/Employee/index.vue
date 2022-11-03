@@ -1,6 +1,7 @@
  <template>
     <div>
-        <v-card>
+        <v-card
+        >
         
             <v-data-table
                 :headers="headers"
@@ -43,7 +44,7 @@
                         dark
                         class="ma-4"
                         fab
-                        @click="Add()"
+                        @click="add()"
                         >
                           <v-icon 
                           pa-8
@@ -136,20 +137,24 @@
         this.indexParticipants()
     },
     indexParticipants() {
-          this.url = 'participants/pagination?page='+this.current_page+ '&keyword=' +this.search
-          this.loading = true
-          if (this.timer) {
-            clearTimeout(this.timer);
-            this.timer = null;
-          }
-          this.timer = setTimeout(() => { 
-            ParticipantPagination(this.url).then(({data}) => {
-              console.log(this.url,"index")
-              this.set_data_fromServer(data)
-              this.loading = false
-            })
-          }, 800);
-        },
+      this.url = 'participants/pagination?page='+this.current_page+ '&keyword=' +this.search
+      this.loading = true
+      if (this.timer) {
+        clearTimeout(this.timer);
+        this.timer = null;
+      }
+      this.timer = setTimeout(() => { 
+        ParticipantPagination(this.url).then(({data}) => {
+          console.log(this.url,"index")
+          this.set_data_fromServer(data)
+          this.loading = false
+        })
+      }, 800);
+    },
+    add(){
+      this.$router.push('/attendee/add')
+    }
+   
   
    },
  }

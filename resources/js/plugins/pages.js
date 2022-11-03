@@ -16,6 +16,8 @@ import NavSetting from '../pages/settings/navsetting.vue'
 import Items from '../pages/settings/includes/item.vue'
 import Delivery from '../pages/settings/includes/delivery.vue'
 
+import Attendance from '../pages/Attendance.vue'
+
 
 export default [{
     path: '/',
@@ -40,13 +42,14 @@ export default [{
             component: Employee,
             meta: { authOnly: true },
             children : [
-                {
-                    path: '/attendee/add',
-                    name: 'attendee-add',
-                    component: AddEmployee,
-                    meta: { authOnly: true },
-                },
+               
             ]
+        },
+        {
+            path: '/attendee/add',
+            name: 'attendee-add',
+            component: AddEmployee,
+            meta: { authOnly: true },
         },
 
         {
@@ -105,5 +108,12 @@ export default [{
     name: 'login',
     component: Login,
     meta: { authOnly: false },
-}]
+},
+{
+    path: '/attendance',
+    name: 'attendance',
+    component: Attendance,
+    meta: {authOnly: true}
+}
+]
 

@@ -13,4 +13,9 @@ class Event extends Model
         'start',
         'end'
     ];
+
+    public function record_event()
+    {
+        return $this->hasMany(Record::class);
+    }
 }

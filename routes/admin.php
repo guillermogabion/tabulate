@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ParticipantController;
+use App\Http\Controllers\RecordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
@@ -26,4 +27,12 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:admin-api']], function (
     Route::post('event', [EventController::class, 'store']);
     Route::post('event/{id}', [EventController::class, 'update']);
     Route::delete('event/{id}', [EventController::class, 'destroy']);
+    Route::get('events/pagination', [EventController::class, 'pagination']);
+
+    Route::post('record', [RecordController::class, 'store']);
+    Route::post('record-destroy/{id}', [RecordController::class, 'destroy']);
+    Route::post('record/pagination', [RecordController::class, 'destroy']);
+
+
+    Route::get('get', [RecordController::class, 'get']);
 });

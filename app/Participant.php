@@ -25,4 +25,9 @@ class Participant extends Model
         if ($this->last_name) $fullname .= ' ' . ucfirst($this->last_name);
         return $fullname;
     }
+
+    public function record_participant()
+    {
+        return $this->belongsToMany(Record::class);
+    }
 }

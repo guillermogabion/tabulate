@@ -3,6 +3,8 @@
    app
    v-model = "mini"
    persistent
+   :value="drawer"
+    :mini-variant.sync="drawer"
    >
    
     <v-list-item class="px-2 pt-2">
@@ -18,8 +20,9 @@
     dense
     padding="20px"
     >
+    <template v-for="item in items">
         <v-list-item
-        v-for="item in items"
+        v-if="itemChecker(item.title)"
         :key="item.title"
         :to="item.route"
         class="text-decoration-none spacing hover"
@@ -35,6 +38,8 @@
             <v-list-item-title>{{ item.title }}</v-list-item-title>
         </v-list-item-content>
         </v-list-item>
+    </template>
+
     </v-list>
 
    </v-navigation-drawer>
@@ -79,12 +84,40 @@ export default {
                 console.log(value, "status")
                 this.$emit('changeStatusDrawer')
             }
+        },
+        drawer: {
+            get() {
+            return this.$store.state.sidebar;
+            },
+            set(value) {
+            this.$store.state.sidebar = value;
+            }
         }
+        
+        
     },
     methods : {
         checkIfActive(route){
             let route_text = route.split("/")
             return route_text[1].includes(this.activeRoute.name)
+        },
+
+        itemChecker(item){
+            let user_accepts = ['Dashboard', 'Participants']
+            let other_accepts = ['Events', "Settings"]
+
+            if(this.$is_admin()){
+                return true
+            }
+            if(this.$is_student()){
+                return user_accepts.includes(item)
+            }
+            else if(this.$is_executive()){
+                return other_accepts.includes(item)
+            }
+            else {
+                return false
+            }
         }
     }
 }

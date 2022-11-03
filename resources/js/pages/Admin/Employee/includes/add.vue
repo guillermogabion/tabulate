@@ -44,7 +44,7 @@
           <v-col>
 
             <v-card-title>
-              Employee Information
+              Attendee Information
             </v-card-title>
             <v-row>
               <v-col>

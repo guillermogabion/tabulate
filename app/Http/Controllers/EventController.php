@@ -47,4 +47,15 @@ class EventController extends Controller
     {
         return Event::get();
     }
+    public function pagination(Request $request)
+    {
+        $data = Event::query();
+        if ($request->input('keyword') != "") {
+            $keyword = $request->input('keyword');
+            $data->where(function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', "%$keyword%");
+            });
+        }
+        return $data->orderBy('name', 'asc')->paginate(10);
+    }
 }
