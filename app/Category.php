@@ -11,4 +11,9 @@ class Category extends Model
         'avatar',
         'name'
     ];
+
+    public function getAvatarAttribute($value)
+    {
+        return asset('images/category') . '/' . $value;
+    }
 }

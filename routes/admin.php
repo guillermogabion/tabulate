@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\RecordController;
@@ -32,6 +33,10 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:admin-api']], function (
     Route::post('record', [RecordController::class, 'store']);
     Route::post('record-destroy/{id}', [RecordController::class, 'destroy']);
     Route::post('record/pagination', [RecordController::class, 'destroy']);
+
+    // category 
+    Route::get('show-category', [CategoryController::class, 'index']);
+    Route::post('add-category', [CategoryController::class, 'store']);
 
 
     Route::get('get', [RecordController::class, 'get']);

@@ -9,10 +9,6 @@
                 <v-card-title>
                 Items
                 </v-card-title>
-                <v-divider
-                inset
-                vertical
-                ></v-divider>
                 <v-spacer></v-spacer>
                 <v-row
                 justify="center"
