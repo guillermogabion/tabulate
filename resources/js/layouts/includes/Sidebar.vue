@@ -51,6 +51,7 @@ export default {
         logocard,
         items : [
             {title : 'Dashboard', icon: 'mdi-view-dashboard', route: '/'},
+            {title : 'Items', icon: 'mdi-view-dashboard', route: '/allitems'},
             {title : 'Participants', icon: 'mdi mdi-account-group', route: '/attendee'},
             {title : 'Events', icon: 'mdi mdi-account-group', route: '/event'},
             {title : 'Settings', icon: 'mdi-view-dashboard', route: '/setting'},
@@ -109,11 +110,8 @@ export default {
             if(this.$is_admin()){
                 return true
             }
-            if(this.$is_student()){
+            else if(this.$is_user()){
                 return user_accepts.includes(item)
-            }
-            else if(this.$is_executive()){
-                return other_accepts.includes(item)
             }
             else {
                 return false

@@ -1,5 +1,8 @@
 <template>
     <div>
+       <v-card
+       elevation="2"
+       >
         Menstruation, Myopia, and Marginalization: Advancing Menstrual Policies to “Keep Girls in School” at the Risk of Exacerbating Inequalities
 Nay Alhelou, Purvaja S. Kavattur, Mary M. Olson, Lillian Rountree, and Inga T. Winkler
 20 October 2022
@@ -19,5 +22,6 @@ Caroline M. Parker, Oscar E. Miranda-Miller, and Carmen Albizu-García
 Reparations for Harms Experienced in Residential Aged Care
 Linda Steele and Kate Swaffer
 28 June 2022
+       </v-card>
     </div>
 </template>

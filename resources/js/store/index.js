@@ -23,11 +23,12 @@ export default new Vuex.Store({
     component_requested: '',
     user: {
       is_admin: 1,
-      is_instructor : 2,
-      is_librarian : 3,
-      is_registrar : 4,
-      is_executive : 5,
-      is_student : 0
+      is_user: 0,
+      // is_instructor : 2,
+      // is_librarian : 3,
+      // is_registrar : 4,
+      // is_executive : 5,
+      // is_student : 0
     },
    
     token: '',

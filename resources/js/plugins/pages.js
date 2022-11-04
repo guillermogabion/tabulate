@@ -15,8 +15,11 @@ import Event from '../pages/Admin/Event/index.vue'
 import NavSetting from '../pages/settings/navsetting.vue'
 import Items from '../pages/settings/includes/item.vue'
 import Delivery from '../pages/settings/includes/delivery.vue'
+import Category from '../pages/settings/includes/category.vue'
 
 import Attendance from '../pages/Attendance.vue'
+
+import AllItems from '../pages/Items/index.vue'
 
 
 export default [{
@@ -34,6 +37,21 @@ export default [{
             name: 'dashboard',
             component: Dashboard,
             meta: { authOnly: true },
+        },
+        // items 
+
+        {
+            path: '/allitems',
+            component: AllItems,
+            meta: { authOnly: true },
+            children: [
+                {
+                    path: '/allitems',
+                    name: 'items',
+                    meta: { authOnly: true },
+                    component : AllItems
+                },
+            ]
         },
         // employee 
         {
@@ -93,6 +111,12 @@ export default [{
                     path: '/setting/delivery',
                     name: 'delivery',
                     component: Delivery,
+                    meta: { authOnly: true }
+                },
+                {
+                    path: '/setting/category',
+                    name: 'category',
+                    component: Category,
                     meta: { authOnly: true }
                 },
 
