@@ -39,12 +39,24 @@ class ItemController extends Controller
         $data = Item::query();
         if ($request->input('keyword') != "") {
             $keyword = $request->input('keyword');
-            $category = $request->input('category');
-            $data->where(function ($query) use ($keyword, $category) {
-                $query->where('name', 'LIKE', "%$keyword%")
-                    ->where('category_id', 'LIKE', $category);
+            // $category = $request->input('category');
+            $data->where(function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', "%$keyword%");
+                // ->where('category_id', 'LIKE', $category);
             });
         }
         return $data->orderBy('name', 'asc')->paginate(10);
+    }
+    public function search(Request $request)
+    {
+        $data = Item::query();
+        if ($request->input('searchkey') != "") {
+            $keyword = $request->input('searchkey');
+            $data->where(function ($query) use ($keyword) {
+                $query->where('name', 'LIKE', "%$keyword%");
+                // ->orWhere('last_name', 'LIKE', "%$keyword%");
+            });
+        }
+        return $data->orderBy('name', 'desc')->get();
     }
 }

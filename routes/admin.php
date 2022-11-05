@@ -6,6 +6,7 @@ use App\Http\Controllers\ParticipantController;
 use App\Http\Controllers\RecordController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ItemController;
 
 
 Route::group(['prefix' => '/v1'], function () {
@@ -38,6 +39,9 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:admin-api']], function (
     Route::get('show-category', [CategoryController::class, 'index']);
     Route::post('add-category', [CategoryController::class, 'store']);
 
+    // item 
+    Route::get('items/pagination', [ItemController::class, 'pagination']);
+    Route::post('items-search', [ItemController::class, 'search']);
 
     Route::get('get', [RecordController::class, 'get']);
 });

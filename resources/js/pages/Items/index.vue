@@ -18,11 +18,18 @@
                     class="ma-2"
                     >
                         <v-text-field
-                            label="Item Name"
-                            placeholder="Item Name"
-                            solo
-                            class="pa-2 ins"
-                        ></v-text-field>
+                        auto-select-first
+                        :items="items"
+                        filled 
+                        clearable
+                        ref="sfield"
+                        rounded 
+                        v-model="form.search"
+                        dense 
+                        single-line 
+                        append-icon="mdi-magnify" 
+                        class="mx-4 mt-5"
+                    ></v-text-field>
                     </v-col>
                     <v-col
                     class="ma-2"
@@ -44,10 +51,72 @@
            </v-card>
         </v-col>
         <v-col>
-            column 2
+           <v-row class="ma-1">
+            <v-col v-for="item in items" :key="item.id"
+                cols="16" :lg="2" :sm="8" :md="2" :xs="10" 
+            >
+            <v-card
+            class="mx-auto"
+            max-width="280"
+            max-height="310"
+            min-height="340"
+            >
+            {{item.name}}
+            {{item.brand}}
+            {{item.description}}
+            {{item.stock}}
+            {{item.sold}}
+            </v-card>
+
+            </v-col>
+
+           </v-row>
         </v-col>
     </div>
 </template>
+<script>
+import axios from '../../plugins/axios';
+
+    export default {
+        data() {
+            return {
+                items: [],
+                form : {
+                    search: '',
+                }
+            }
+        },
+        mounted (){
+            this.searchItem()
+        },
+        methods: {
+            searchItem(key) {
+                this.loading = true
+                if (this.timer) {
+                clearTimeout(this.timer);
+                this.timer = null;
+                }
+                this.timer = setTimeout(() => {
+                axios.post('items-search', {searchkey:key}).then((response) => {
+                    this.items = response.data 
+                    this.loading = false
+                }).catch((errors) => {
+                    console.log(errors)
+                });
+                },800);
+            },
+        },
+        watch: {
+            "form.search": {
+                handler(val) {
+                this.searchItem(val)
+                },
+                deep: true,
+            },
+        }
+    }
+   
+</script>
 <style>
 .selects .v-input__slot {
   padding: 11px !important;
