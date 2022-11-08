@@ -13,13 +13,13 @@ class CreateAttendancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('attendances', function (Blueprint $table) {
-            $table->id();
-            $table->integer('participant_id')->unsigned();
-            $table->integer('event_id')->unsigned();
-            $table->integer('signed_id')->unsigned();
-            $table->timestamps();
-        });
+        // Schema::create('attendances', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->integer('participant_id')->unsigned();
+        //     $table->integer('event_id')->unsigned();
+        //     $table->integer('signed_id')->unsigned();
+        //     $table->timestamps();
+        // });
     }
 
     /**

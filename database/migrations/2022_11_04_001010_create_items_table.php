@@ -13,18 +13,18 @@ class CreateItemsTable extends Migration
      */
     public function up()
     {
-        Schema::create('items', function (Blueprint $table) {
-            $table->id();
-            $table->string('name');
-            $table->string('description');
-            $table->string('stock');
-            $table->string('sold');
-            $table->string('brand')->nullable();
-            $table->string('price');
-            $table->integer('is_available');
-            $table->integer('category');
-            $table->timestamps();
-        });
+        // Schema::create('items', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->string('name');
+        //     $table->string('description');
+        //     $table->string('stock');
+        //     $table->string('sold');
+        //     $table->string('brand')->nullable();
+        //     $table->string('price');
+        //     $table->integer('is_available');
+        //     $table->integer('category');
+        //     $table->timestamps();
+        // });
     }
 
     /**

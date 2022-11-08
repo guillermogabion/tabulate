@@ -13,13 +13,13 @@ class CreateRecordsTable extends Migration
      */
     public function up()
     {
-        Schema::create('records', function (Blueprint $table) {
-            $table->id();
-            $table->integer('user_id')->unsigned();
-            $table->integer('participant_id')->unsigned();
-            $table->integer('event_id')->unsigned();
-            $table->timestamps();
-        });
+        // Schema::create('records', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->integer('user_id')->unsigned();
+        //     $table->integer('participant_id')->unsigned();
+        //     $table->integer('event_id')->unsigned();
+        //     $table->timestamps();
+        // });
     }
 
     /**

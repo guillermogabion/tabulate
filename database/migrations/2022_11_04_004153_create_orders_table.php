@@ -13,16 +13,16 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
-            $table->id();
-            $table->integer('item_id')->unsigned();
-            $table->integer('customer_id')->unsigned();
-            $table->string('location');
-            $table->integer('status');
-            $table->integer('is_cancel');
-            $table->string('quantity');
-            $table->timestamps();
-        });
+        // Schema::create('orders', function (Blueprint $table) {
+        //     $table->id();
+        //     $table->integer('item_id')->unsigned();
+        //     $table->integer('customer_id')->unsigned();
+        //     $table->string('location');
+        //     $table->integer('status');
+        //     $table->integer('is_cancel');
+        //     $table->string('quantity');
+        //     $table->timestamps();
+        // });
     }
 
     /**
