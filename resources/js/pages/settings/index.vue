@@ -46,10 +46,9 @@ export default {
     data() {
         return {
             menus : [
-                {title : 'Items', icon: "mdi-bullseye-arrow", route: '/setting/item'  },
-                {title : 'Delivery',  icon: "mdi-bullseye-arrow", route: '/setting/delivery' },
-                {title : 'Category',  icon: "mdi-bullseye-arrow", route: '/setting/category' },
-             
+                {title : 'Events', icon: "mdi mdi-slack", route: '/event'  },
+                {title : 'Category',  icon: "mdi mdi-quadcopter", route: '/category' },
+                {title : 'Criteria',  icon: "mdi mdi-star-box", route: '/criteria' },
             ]
         }
     },
@@ -58,14 +57,14 @@ export default {
 
 <style scoped>
 .v-list-item--active {
-    background-color: #4caf50;
+    background-color:rgb(91, 88, 88);
     color: #f4f4f4 !important;
     margin: 4%;
     padding-bottom: 2%;
     
 }
 .hover:hover {
-    background-color: #4caf50!important;
+    background-color:rgb(91, 88, 88)!important;
     color: #040404 !important;
     margin: 4%;
     padding-bottom: 2%;

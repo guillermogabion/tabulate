@@ -73,25 +73,11 @@
      
     </v-sheet>
 </div>
-     
-
-    <!-- <v-card
-      class="mx-auto"
-      max-width="344"
-      padding-top="20px"
-      outlined
-    >
-      
-  
-      <v-card-actions>
-      
-      </v-card-actions>
-    </v-card> -->
 </v-app>
 </template>
 
 <script>
-import logo from '../assets/logo.jpg'
+import logo from '../assets/logo.png'
 import logocard from '../assets/logocard.png'
 import { mdiEyeOutline, mdiEyeOffOutline } from '@mdi/js'
 import { login } from "../repositories/user.api";

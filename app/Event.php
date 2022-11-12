@@ -8,8 +8,9 @@ class Event extends Model
 {
     //
     protected $fillable = [
-        'name',
-        'color',
+        'photo',
+        'title',
+        'description',
         'start',
         'end'
     ];
@@ -17,5 +18,9 @@ class Event extends Model
     public function record_event()
     {
         return $this->hasMany(Record::class);
+    }
+    public function getPhotoAttribute($value)
+    {
+        return asset('images/event') . '/' . $value;
     }
 }

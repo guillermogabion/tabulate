@@ -141,7 +141,7 @@
   </template>
 
 <script>
-import logo from '../../../assets/logo.jpg'
+import logo from '../../../assets/logo.png'
 import axios from '../../../plugins/axios'
 export default {
   data: () => ({

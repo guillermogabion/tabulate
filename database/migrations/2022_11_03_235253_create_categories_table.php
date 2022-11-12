@@ -17,6 +17,8 @@ class CreateCategoriesTable extends Migration
             $table->id();
             $table->string('avatar');
             $table->string('name');
+            $table->string('description');
+            $table->integer('event_id')->unsigned();
             $table->timestamps();
         });
     }

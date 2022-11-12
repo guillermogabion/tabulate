@@ -15,7 +15,9 @@ class CategoryController extends Controller
         // return $request;
         $category = new Category();
         $category->name = $request->name;
-        if ($request->avatar) {
+        $category->description = $request->description;
+        $category->event_id = $request->event_id;
+        if (!str_contains($request->avatar, '/images')) {
             $image = $request->avatar;  // your base64 encoded
             list($type, $image) = explode(';', $image);
             list(, $image)      = explode(',', $image);
@@ -25,8 +27,6 @@ class CategoryController extends Controller
             $category->avatar = $imageName;
         }
         $category->save();
-        // $requestData = $request->all();
-        // $data->create($requestData);
         return response()->json([
             'message' => "Category Added"
         ], 201);
@@ -45,5 +45,11 @@ class CategoryController extends Controller
     public function index()
     {
         return Category::get();
+    }
+
+    public function fetchCategory($id)
+    {
+        $data = Category::where('event_id', $id)->get();
+        return $data;
     }
 }

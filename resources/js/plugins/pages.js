@@ -2,24 +2,20 @@ import Main from '../pages/Main.vue'
 import Login from '../pages/Login.vue'
 import Dashboard from '../pages/Admin/Dashboard.vue'
 // employee 
-import Employee from '../pages/Admin/Employee/index.vue'
-import AddEmployee from '../pages/Admin/Employee/includes/add.vue'
-import About from '../pages/Admin/About.vue'
+import Participant from '../pages/Admin/Participant/index.vue'
+// import AddEmployee from '../pages/Admin/Employee/includes/add.vue'
+import Events from '../pages/Admin/Event/index.vue'
 import Chat from '../layouts/includes/chat/index.vue'
 import Settings from '../pages/settings'
 
-// event 
-import Event from '../pages/Admin/Event/index.vue'
-
 // settings 
-import NavSetting from '../pages/settings/navsetting.vue'
-import Items from '../pages/settings/includes/item.vue'
-import Delivery from '../pages/settings/includes/delivery.vue'
+import Event from '../pages/settings/includes/event.vue'
+import Criteria from '../pages/settings/includes/criteria.vue'
 import Category from '../pages/settings/includes/category.vue'
+import GetCriteria from '../pages/Scoring/criteria/index.vue'
 
-import Attendance from '../pages/Attendance.vue'
-
-import AllItems from '../pages/Items/index.vue'
+// Judge 
+import Judge from '../pages/Scoring/index.vue'
 
 
 export default [{
@@ -38,51 +34,31 @@ export default [{
             component: Dashboard,
             meta: { authOnly: true },
         },
-        // items 
-
+        // participant
         {
-            path: '/allitems',
-            component: AllItems,
+            path: '/events',
+            name: 'events',
+            component: Events,
             meta: { authOnly: true },
-            children: [
-                {
-                    path: '/allitems',
-                    name: 'items',
-                    meta: { authOnly: true },
-                    component : AllItems
-                },
-            ]
-        },
-        // employee 
-        {
-            path: '/attendee',
-            name: 'attendee',
-            component: Employee,
-            meta: { authOnly: true },
-            children : [
-               
-            ]
+         
         },
         {
-            path: '/attendee/add',
-            name: 'attendee-add',
-            component: AddEmployee,
+            path: '/participants',
+            name: 'participants',
+            component: Participant,
             meta: { authOnly: true },
+         
         },
 
         {
-            path: '/event',
-            name: 'event',
-            component: Event,
+            path: '/getcriteria/:id',
+            name: 'getcriteria',
+            component: GetCriteria,
             meta: { authOnly: true },
+         
         },
 
-        {
-            path: '/about',
-            name: 'about',
-            component: About,
-            meta: { authOnly: true },
-        },
+       
 
         {
             path: '/chat',
@@ -93,31 +69,43 @@ export default [{
         {
             path: '/setting',
             component: Settings,
+            name: 'setting',
             meta: { authOnly: true },
             children: [
                 {
-                    path: '/setting',
-                    name: 'items',
-                    meta: { authOnly: true },
-                    component : Items
+                    path: `/setting`,
+                    meta: { 
+                        authOnly: true,
+                        parent : `/setting`
+                    },
+                    component : Event
                 },
                 {
-                    path: '/setting/item',
-                    name: 'items',
-                    meta: { authOnly: true },
-                    component : Items
+                    path: `/event`,
+                    name: `event`,
+                    meta: { 
+                        authOnly: true,
+                        parent : `/setting`
+                    },
+                    component : Event
                 },
                 {
-                    path: '/setting/delivery',
-                    name: 'delivery',
-                    component: Delivery,
-                    meta: { authOnly: true }
+                    path: `/criteria`,
+                    name: `criteria`,
+                    component: Criteria,
+                    meta: { 
+                        authOnly: true,
+                        parent : `/setting`
+                    },
                 },
                 {
-                    path: '/setting/category',
-                    name: 'category',
+                    path: `/category`,
+                    name: `category`,
                     component: Category,
-                    meta: { authOnly: true }
+                    meta: { 
+                        authOnly: true,
+                        parent : `/setting`
+                    },
                 },
 
             ]
@@ -134,10 +122,13 @@ export default [{
     meta: { authOnly: false },
 },
 {
-    path: '/attendance',
-    name: 'attendance',
-    component: Attendance,
-    meta: {authOnly: true}
+   path: '/judge',
+   name: 'judge',
+   component: Judge,
+   meta: { authOnly: true },
+   props: {
+    default: true,
+    },
 }
 ]
 

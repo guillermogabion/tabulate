@@ -9,7 +9,9 @@ class Category extends Model
     //
     protected $fillable = [
         'avatar',
-        'name'
+        'name',
+        'description',
+        'event_id'
     ];
 
     public function getAvatarAttribute($value)

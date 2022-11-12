@@ -1,160 +1,154 @@
 <template>
-    <div>
-        <v-card>
-        
-            <v-data-table
-                :headers="headers"
-                :items="event"
-                class="elevation-1"
-                :items-per-page="itemsPerPage"
-                :loading="loading"
-                :page.sync="page"
-                @page-count="pageCount = $event"
-                :server-items-length="total_event"
-                @pagination="fetchEventsData"
-                hide-default-footer
-            >
-                <template v-slot:top>
-                <v-toolbar
-                    flat
-                >
-                    <v-toolbar-title>Events</v-toolbar-title>
-                    <v-divider
-                    class="mx-4"
-                    inset
-                    vertical
-                    ></v-divider>
-                    <v-spacer></v-spacer>
-                    <v-text-field
-                        label="Search"
-                        filled
-                        rounded
-                        dense
-                        class="pt-8"
-                        append-icon="mdi-magnify"
-                        :items="event"
-                        v-model="search"
-                    ></v-text-field>
-                    <div
-                    class="pt-1"
-                    >
-                        <v-btn
-                        color="green"
-                        dark
-                        class="ma-4"
-                        fab
-                        @click="add()"
-                        >
-                          <v-icon 
-                          pa-8
-                          ma-2
-                          size="30"
-                        
-                          dark>
-                              mdi-plus
-                            </v-icon>
-                          </v-btn>
-                              
-                        </div>
-                </v-toolbar>
-                </template>
-                
-            </v-data-table>
-            <div class="text-center pt-2">
-              <v-pagination
-              v-model="page"
-              :total-visible="7"
-              :length="pageCount"
-              
-            ></v-pagination>
-            </div>
+  <div>
+      <v-col>
+         <v-card min-height="1%" max-height="1%">
+          <div>
+          <v-row
+          class="ma-3"
+          >
+              <v-card-title>
+              Events
+              </v-card-title>
+              <v-spacer></v-spacer>
+              <v-row
+              justify="center"
+             
+              >
+                <v-text-field
+                    auto-select-first
+                    :items="events"
+                    solo
+                    clearable
+                    ref="sfield"
+                    v-model="form.search"
+                    dense 
+                    single-line 
+                    append-icon="mdi-magnify" 
+                    class="mx-4 mt-5"
+                ></v-text-field>
+                 
+              </v-row>
+             
+          </v-row>
+          </div>
+         </v-card>
+      </v-col>
+      <v-col>
+         <v-row class="ma-1">
+          <v-col v-for="item in events" :key="item.id"
+              cols="12" :lg="2" :sm="8" :md="2" :xs="10" 
+          >
+         
+          <v-card
+          class="mx-auto image-contain"
+          max-width="280"
+          max-height="310"
+          min-height="340"
+          @click="redirect(item.id)"
+          >
+          <v-img
+                contain
+                :alt="item.avatar"
+                :src="item.avatar"
+                max-height="150"
+                max-width="200"
+              ></v-img>
+          <v-card-title class="justify-center">
+            {{item.title}}
+          </v-card-title>
+            {{item.description}}<br>
+            Date : {{item.start}}
+       
 
+         
+          </v-card>
 
-        </v-card>
-    </div>
- </template>
- <script>
-// import Axios from 'axios';
- import { EventPagination } from '../../../repositories/event.api';
- export default {
-   data: () => ({
-     dialog: false,
-     dialogDelete: false,
-     headers: [
-       { text: 'Title', align: 'start', sortable: false, value: 'name',},
-       { text: 'Start', align: 'start', sortable: false, value: 'start',},
-       { text: 'End', align: 'start', sortable: false, value: 'end',},
-    //    { text: 'Title', align: 'start', sortable: false, value: 'name',},yyttt
-      
-     ],
-     loading: false,
-      event: [],
-      search : '',
-      pageCount: 0,
-      itemsPerPage:null,
-      total_event:0,
-      page:1,
-      current_page:0,
-   }),
-  
-   watch: {
-     dialog (val) {
-       val || this.close()
-     },
-     dialogDelete (val) {
-       val || this.closeDelete()
-     },
-     "search": {
-        handler(val) {
-          this.indexEvents(val)
-        },
-        deep: true,
+          </v-col>
+
+         </v-row>
+      </v-col>
+      <eventDialog
+      :dialog="dialog"
+      :id = "selected_item_id"
+      @close="categoryClose()"
+      @open="criteriaOpen(selected_item_id)"
+      ></eventDialog>
+  </div>
+</template>
+<script>
+import axios from '../../../plugins/axios';
+import eventDialog from '../../Scoring/index.vue'
+import criteriaDialog from '../../Scoring/criteria/index.vue'
+
+  export default {
+      components : {
+        eventDialog,
+       criteriaDialog
+
       },
-
-   },
-   mounted(){
-    this.initialize()
-   }, 
- 
-
-   methods: {
-    initialize(){
-      // Axios.get('get').then((response) => {
-      //   console.log(response.data)
-      //   this.participants = response.data
-      // })
-
-    },
-    set_data_fromServer(data) {
-      this.event = data.data
-      this.total_event = data.total
-      this.itemsPerPage = data.per_page
-      this.pageCount = data.last_page
-    },
-    fetchEventsData(page){
-        this.current_page = page.page
-        this.indexEvents()
-    },
-    indexEvents() {
-      this.url = 'events/pagination?page='+this.current_page+ '&keyword=' +this.search
-      this.loading = true
-      if (this.timer) {
-        clearTimeout(this.timer);
-        this.timer = null;
+      data() {
+          return {
+              selected_item_id:0,
+              events: [],
+              form : {
+                  search: '',
+              },
+              dialog : false,
+              dialogCriteria: false
+          }
+      },
+      mounted (){
+          this.searchEvent()
+      },
+      methods: {
+          searchEvent(key) {
+              this.loading = true
+              if (this.timer) {
+              clearTimeout(this.timer);
+              this.timer = null;
+              }
+              this.timer = setTimeout(() => {
+              axios.post('events/search', {searchkey:key}).then((response) => {
+                  this.events = response.data.data 
+                  this.loading = false
+              }).catch((errors) => {
+                  console.log(errors)
+              });
+              },800);
+          },
+          redirect(id){
+            this.selected_item_id = id
+            this.$nextTick(() => {
+              this.dialog = true
+            })
+          },
+          categoryClose(){
+            this.dialog = false
+          },
+          criteriaOpen(selected_item_id){
+            this.selected_item_id = selected_item_id
+            this.dialogCriteria = true
+            this.categoryClose()
+          }
+      },
+      watch: {
+          "form.search": {
+              handler(val) {
+              this.searchEvent(val)
+              },
+              deep: true,
+          },
       }
-      this.timer = setTimeout(() => { 
-        EventPagination(this.url).then(({data}) => {
-          console.log(this.url,"index")
-          this.set_data_fromServer(data)
-          this.loading = false
-        })
-      }, 800);
-    },
-    add(){
-      this.$router.push('/attendee/add')
-    }
-   
-  
-   },
- }
+  }
+ 
 </script>
+<style>
+.selects .v-input__slot {
+padding: 11px !important;
+}
+.image-contain {
+  padding-top: 1.5em;
+  padding-left: 10%;
+}
+
+</style>

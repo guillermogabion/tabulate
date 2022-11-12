@@ -10,7 +10,7 @@
     <v-list-item class="px-2 pt-2">
         <v-img
         color="primary"
-        size="40"
+       size="20"
         :src="logocard"
         >
         </v-img>
@@ -51,9 +51,10 @@ export default {
         logocard,
         items : [
             {title : 'Dashboard', icon: 'mdi-view-dashboard', route: '/'},
-            {title : 'Items', icon: 'mdi-view-dashboard', route: '/allitems'},
-            {title : 'Participants', icon: 'mdi mdi-account-group', route: '/attendee'},
-            {title : 'Events', icon: 'mdi mdi-account-group', route: '/event'},
+            // {title : 'Items', icon: 'mdi-view-dashboard', route: '/allitems'},
+            {title : 'Events', icon: 'mdi mdi-account-group', route: '/events'},
+            {title : 'Participants', icon: 'mdi mdi-account-group', route: '/participants'},
+            // {title : 'Events', icon: 'mdi mdi-account-group', route: '/event'},
             {title : 'Settings', icon: 'mdi-view-dashboard', route: '/setting'},
         //     {
         //         icon: 'mdi mdi-notebook-multiple',
@@ -146,7 +147,7 @@ export default {
 }
 
 .v-list-item--active {
-    background-color: #4caf50;
+    background-color: rgb(91, 88, 88);
     color: #f4f4f4 !important;
     border-top-left-radius: 10% 50%;
     border-bottom-left-radius: 10% 50%;
@@ -159,7 +160,7 @@ export default {
 
 
 .hover:hover {
-    background-color: #4caf50!important;
+    background-color: rgb(91, 88, 88)!important;
     color: #040404 !important;
     border-top-left-radius: 10% 50%;
     border-bottom-left-radius: 10% 50%;
@@ -180,7 +181,7 @@ export default {
   }
 
 .v-list-group.tile > div:first-child:hover {
-  background:#EF7922 !important;
+  background:grey !important;
 }
 
 </style>
