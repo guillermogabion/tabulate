@@ -3,6 +3,7 @@ import Login from '../pages/Login.vue'
 import Dashboard from '../pages/Admin/Dashboard.vue'
 // employee 
 import Participant from '../pages/Admin/Participant/index.vue'
+import AddParticipant from '../pages/Admin/Participant/includes/addParticipant.vue'
 // import AddEmployee from '../pages/Admin/Employee/includes/add.vue'
 import Events from '../pages/Admin/Event/index.vue'
 import Chat from '../layouts/includes/chat/index.vue'
@@ -47,7 +48,19 @@ export default [{
             name: 'participants',
             component: Participant,
             meta: { authOnly: true },
+            children : [
+                
+            ]
          
+        },
+        {
+            path : '/participants/add',
+            name: 'participant-add',
+            meta : {
+                authOnly: true,
+            },
+            component : AddParticipant
+
         },
 
         {
@@ -81,7 +94,7 @@ export default [{
                     component : Event
                 },
                 {
-                    path: `/event`,
+                    path: `/setting/event`,
                     name: `event`,
                     meta: { 
                         authOnly: true,
@@ -90,7 +103,7 @@ export default [{
                     component : Event
                 },
                 {
-                    path: `/criteria`,
+                    path: `/setting/criteria`,
                     name: `criteria`,
                     component: Criteria,
                     meta: { 
@@ -99,7 +112,7 @@ export default [{
                     },
                 },
                 {
-                    path: `/category`,
+                    path: `/setting/category`,
                     name: `category`,
                     component: Category,
                     meta: { 

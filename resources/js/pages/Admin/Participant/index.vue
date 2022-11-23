@@ -14,6 +14,7 @@
                 :server-items-length="total_participants"
                 @pagination="fetchParticipantsData"
                 hide-default-footer
+                :mobile-breakpoint="0"
             >
                 <template v-slot:top>
                 <v-toolbar
@@ -84,8 +85,8 @@
      headers: [
        { text: 'Fullname', align: 'start', sortable: false, value: 'fullname',},
        { text: 'Address', value: 'address' },
-       { text: 'Contact', value: 'contact' },
-       { text: 'Designation', value: 'designation' },
+       { text: 'Contact', value: 'number' },
+       { text: 'Email', value: 'email' },
        { text: 'Actions', value: 'actions', sortable: false },
      ],
      loading: false,

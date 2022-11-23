@@ -72,11 +72,18 @@
 
 
       </v-card>
+      <addEvent
+      :dialog="dialog"
+      @reload="indexEvents()"
+      @close="close()"
+      ></addEvent>
+
   </div>
 </template>
 <script>
 // import Axios from 'axios';
 import { EventPagination } from '../../../repositories/event.api';
+import addEvent from '../dialogs/event_dialog.vue'
 export default {
  data: () => ({
    dialog: false,
@@ -97,6 +104,9 @@ export default {
     page:1,
     current_page:0,
  }),
+ components : {
+    addEvent
+ },
 
  watch: {
    dialog (val) {
@@ -153,6 +163,10 @@ export default {
   },
   add(){
     // this.$router.push('/attendee/add')
+    this.dialog = true
+  },
+  close(){
+    this.dialog = false
   }
  
 

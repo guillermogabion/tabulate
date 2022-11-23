@@ -16,11 +16,19 @@ class CreateParticipantsTable extends Migration
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
             $table->string('avatar');
-            $table->string('first_name')->nullable();
-            $table->string('last_name')->nullable();
-            $table->string('group_name');
+            $table->string('firstname')->nullable();
+            $table->string('lastname')->nullable();
+            $table->string('gender')->nullable();
+            $table->string('birthdate')->nullable();
+            $table->string('email');
+            $table->string('number');
             $table->string('address');
-            $table->string('contact');
+            $table->string('home')->nullable();
+            $table->string('city')->nullable();
+            $table->string('state')->nullable();
+            $table->string('zipcode')->nullable();
+            $table->string('country')->nullable();
+            $table->string('contest_number')->nullable();
             $table->timestamps();
         });
     }

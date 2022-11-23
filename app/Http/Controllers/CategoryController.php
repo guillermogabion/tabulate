@@ -52,4 +52,9 @@ class CategoryController extends Controller
         $data = Category::where('event_id', $id)->get();
         return $data;
     }
+    public function display($id)
+    {
+        $data = Category::where('id', $id)->first();
+        return $data;
+    }
 }

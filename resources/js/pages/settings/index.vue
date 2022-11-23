@@ -46,9 +46,9 @@ export default {
     data() {
         return {
             menus : [
-                {title : 'Events', icon: "mdi mdi-slack", route: '/event'  },
-                {title : 'Category',  icon: "mdi mdi-quadcopter", route: '/category' },
-                {title : 'Criteria',  icon: "mdi mdi-star-box", route: '/criteria' },
+                {title : 'Events', icon: "mdi mdi-slack", route: '/setting/event'  },
+                {title : 'Category',  icon: "mdi mdi-quadcopter", route: '/setting/category' },
+                {title : 'Criteria',  icon: "mdi mdi-star-box", route: '/setting/criteria' },
             ]
         }
     },

@@ -21,8 +21,8 @@ class Participant extends Model
     public function getFullnameAttribute()
     {
         $fullname = '';
-        if ($this->first_name) $fullname = ucfirst($this->first_name);
-        if ($this->last_name) $fullname .= ' ' . ucfirst($this->last_name);
+        if ($this->firstname) $fullname = ucfirst($this->firstname);
+        if ($this->lastname) $fullname .= ' ' . ucfirst($this->lastname);
         return $fullname;
     }
 

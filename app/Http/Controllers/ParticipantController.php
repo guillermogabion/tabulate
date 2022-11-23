@@ -19,12 +19,32 @@ class ParticipantController extends Controller
     public function store(Request $request)
     {
         $data = new Participant();
-        $requestData = $request->all();
-        $register = $data->create($requestData);
-
+        $data->firstname = $request->firstname;
+        $data->lastname = $request->lastname;
+        $data->gender = $request->gender;
+        $data->birthdate = $request->birthdate;
+        $data->email = $request->email;
+        $data->number = $request->number;
+        $data->address = $request->address;
+        $data->home = $request->home;
+        $data->city = $request->city;
+        $data->state = $request->state;
+        $data->zipcode = $request->zipcode;
+        $data->country = $request->country;
+        $data->contest_number = $request->contest_number;
+        if (!str_contains($request->avatar, '/images')) {
+            $image = $request->avatar;  // your base64 encoded
+            list($type, $image) = explode(';', $image);
+            list(, $image)      = explode(',', $image);
+            $datacode = base64_decode($image);
+            $imageName = date("YmdHis") . '.' . 'jpeg';
+            file_put_contents(public_path() . '/' . 'images/participant/' . $imageName, $datacode);
+            $data->avatar = $imageName;
+        }
+        $data->save();
         return response()->json([
-            'message' => 'New Participant Added',
-            'info' => $register
+            'message' => "New Participant Added",
+            'data' => $data
         ], 201);
     }
 
@@ -54,11 +74,11 @@ class ParticipantController extends Controller
         if ($request->input('searchkey') != "") {
             $keyword = $request->input('searchkey');
             $data->where(function ($query) use ($keyword) {
-                $query->where('first_name', 'LIKE', "%$keyword%")
-                    ->orWhere('last_name', 'LIKE', "%$keyword%");
+                $query->where('firstname', 'LIKE', "%$keyword%")
+                    ->orWhere('lastname', 'LIKE', "%$keyword%");
             });
         }
-        return $data->orderBy('last_name', 'desc')->get();
+        return $data->orderBy('lastname', 'desc')->get();
     }
 
     public function pagination(Request $request)
@@ -67,9 +87,9 @@ class ParticipantController extends Controller
         if ($request->input('keyword') != "") {
             $keyword = $request->input('keyword');
             $data->where(function ($query) use ($keyword) {
-                $query->where('last_name', 'LIKE', "%$keyword%");
+                $query->where('lastname', 'LIKE', "%$keyword%");
             });
         }
-        return $data->orderBy('last_name', 'asc')->paginate(10);
+        return $data->orderBy('lastname', 'asc')->paginate(10);
     }
 }

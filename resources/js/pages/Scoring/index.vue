@@ -1,8 +1,9 @@
 <template>
 
-<v-dialog v-model="dialog"   min-width="80%" max-width="80%" scrollable persistent>
+<v-dialog v-model="dialog"   min-width="370px" max-width="600px" scrollable persistent>
       <v-card
-      width="30%"
+      max-width="600px"
+      min-width="370px"
       justify="center"
       >
          <v-card-title class="text-h5 grey lighten-2 mb-4">
@@ -10,36 +11,27 @@
          </v-card-title>
          <!-- VCardText after VCardTitle -->
          <v-card-text>
-            <v-row>
                 <v-col v-for="item in category" 
                     :key="item.id"
-                    cols="8"
-                    :lg="8"
-                    :sm="8"
-                    :md="8"
-                    :xs="10"
                 >
                 <v-card
-                class="mx-auto pa-2"
-                min-width="290px"
+                class="pa-1"
+                min-width="50px"
                 max-height="150"
                 min-height="150"
                 @click="redirect(item.id)"
                 >
-
                 <v-img
                 max-height="100"
                 max-width="50"
                 :alt="item.avatar"
                 :src="item.avatar"
                 >
-
                 </v-img>
                     {{item.name}}
                 </v-card>
             
                 </v-col>
-            </v-row>
          </v-card-text>
          <v-card-title class="text-h5 grey lighten-2">
            <v-btn

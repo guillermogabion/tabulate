@@ -35,6 +35,7 @@ Route::group(['prefix' => '/v1', 'middleware' => ['auth:admin-api']], function (
 
     // category 
     Route::get('show-category', [CategoryController::class, 'index']);
+    Route::get('display-category/{id}', [CategoryController::class, 'display']);
     Route::post('add-category', [CategoryController::class, 'store']);
     Route::get('category/active/{id}', [CategoryController::class, 'fetchCategory']);
 
